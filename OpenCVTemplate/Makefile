@@ -1,0 +1,18 @@
+CC = g++
+#CFLAGS += -g -Wall
+OPENCV_INC = $(shell pkg-config opencv4 --cflags)
+CFLAGS = -c $(OPENCV_INC) -O3 -D_UNIX_ -D_LINUX_ -fPIC -std=c++11
+SRC = HelloWorld.cpp
+EXEC = HelloWorld
+
+OPENCV_LIB = $(shell pkg-config opencv4 --libs)
+
+$(EXEC):$(EXEC).o
+	$(CC) $(EXEC).o -o $(EXEC) $(OPENCV_LIB)
+
+$(EXEC).o:
+	$(CC) $(SRC) -o $(EXEC).o $(CFLAGS)
+
+clean:
+	rm -f $(EXEC) $(EXEC).o
+

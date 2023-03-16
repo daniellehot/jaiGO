@@ -1,0 +1,6 @@
+SRC_CPPS = \
+           PvPipelineSample.cpp \
+
+EXEC     = PvPipelineSample
+
+include /opt/jai/ebus_sdk/Ubuntu-20.04-x86_64/share/samples/sample.Makefile
