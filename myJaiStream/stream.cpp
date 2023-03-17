@@ -7,6 +7,7 @@
 #include <PvStreamU3V.h>
 #include <PvBuffer.h>
 #include <PvPipeline.h>
+#include <PvConfigurationReader.h>
 
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -15,6 +16,10 @@ PV_INIT_SIGNAL_HANDLER();
 
 #define BUFFER_COUNT ( 16 )
 
+#define FILE_NAME ( "config.pvxml" )
+#define DEVICE_CONFIGURATION_TAG ( "DeviceConfiguration" )
+#define STREAM_CONFIGURAITON_TAG ( "StreamConfiguration" )
+
 ///
 /// Function Prototypes
 ///
@@ -22,6 +27,7 @@ bool SelectDevice( PvString *aConnectionID, PvDeviceInfoType *aType = NULL );
 PvDevice *ConnectToDevice( const PvString &aConnectionID );
 PvStream *OpenStream( const PvString &aConnectionID );
 void ConfigureStream( PvDevice *aDevice, PvStream *aStream );
+bool LoadDeviceAndStreamConfiguration(PvDevice *aDevice, PvStream *aStream);
 PvPipeline *CreatePipeline( PvDevice *aDevice, PvStream *aStream );
 void AcquireImages( PvDevice *aDevice, PvStream *aStream, PvPipeline *aPipeline );
 
@@ -44,19 +50,22 @@ int main()
             
             if ( lStream != NULL )
             {
-                ConfigureStream( lDevice, lStream );
-                PvPipeline *lPipeline = NULL;
-                lPipeline = CreatePipeline( lDevice, lStream );
-                if( lPipeline )
+                //ConfigureStream( lDevice, lStream );
+                if (LoadDeviceAndStreamConfiguration(lDevice, lStream))
                 {
-                    AcquireImages( lDevice, lStream, lPipeline );
-                    delete lPipeline;
+                    PvPipeline *lPipeline = NULL;
+                    lPipeline = CreatePipeline( lDevice, lStream );
+                    if( lPipeline )
+                    {
+                        AcquireImages( lDevice, lStream, lPipeline );
+                        delete lPipeline;
+                    }
+                    
+                    // Close the stream
+                    cout << "Closing stream" << endl;
+                    lStream->Close();
+                    PvStream::Free( lStream );
                 }
-                
-                // Close the stream
-                cout << "Closing stream" << endl;
-                lStream->Close();
-                PvStream::Free( lStream );
             }
 
             // Disconnect the device
@@ -126,11 +135,6 @@ PvDevice *ConnectToDevice( const PvString &aConnectionID )
         << lResult.GetDescription().GetAscii()
         << ")" << endl;
     }
-
-    if ( lResult.HasDescription() ) 
-    {
-        cout << lResult.GetDescription().GetAscii() << endl;
-    }
  
     return lDevice;
 }
@@ -166,6 +170,34 @@ void ConfigureStream( PvDevice *aDevice, PvStream *aStream )
         // Configure device streaming destination
         lDeviceGEV->SetStreamDestination( lStreamGEV->GetLocalIPAddress(), lStreamGEV->GetLocalPort() );
     }
+
+
+}
+
+bool LoadDeviceAndStreamConfiguration(PvDevice *aDevice, PvStream *aStream)
+{
+    PvConfigurationReader lReader;
+    // Load all the information into a reader.
+    cout << "Load information and configuration" << endl;
+    lReader.Load( FILE_NAME );
+
+    cout << "Restore configuration for a device with the configuration name" << endl;
+    PvResult lResult = lReader.Restore( DEVICE_CONFIGURATION_TAG, aDevice);
+    if ( !lResult.IsOK() )
+    {
+        cout << lResult.GetCodeString().GetAscii() << endl;
+        return false;
+    }
+
+    cout << "Restore configuration for a stream with the configuration name" << endl;
+    lResult = lReader.Restore( STREAM_CONFIGURAITON_TAG, aStream);
+    if ( !lResult.IsOK() )
+    {
+        cout << lResult.GetCodeString().GetAscii() << endl;
+        return false;
+    }
+
+    return true;
 }
 
 PvPipeline *CreatePipeline( PvDevice *aDevice, PvStream *aStream )

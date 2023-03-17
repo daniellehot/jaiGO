@@ -1,111 +1,6 @@
 <?xml version="1.0"?>
 <puregevpersistencefile version="1.0">
-  <context name="ebusplayerconfig">1</context>
-  <propertylist name="communicationbrowser" version="1.0">
-    <parameter name="Visibility">Beginner</parameter>
-    <parameter name="Names">FeatureNames</parameter>
-    <parameter name="View">Tree</parameter>
-    <parameter name="Refresh">AutoRefresh</parameter>
-  </propertylist>
-  <propertylist name="devicebrowser" version="1.0">
-    <parameter name="Visibility">Expert</parameter>
-    <parameter name="Names">FeatureNames</parameter>
-    <parameter name="View">Tree</parameter>
-    <parameter name="Refresh">AutoRefresh</parameter>
-  </propertylist>
-  <propertylist name="streambrowser" version="1.0">
-    <parameter name="Visibility">Beginner</parameter>
-    <parameter name="Names">FeatureNames</parameter>
-    <parameter name="View">Tree</parameter>
-    <parameter name="Refresh">AutoRefresh</parameter>
-  </propertylist>
-  <propertylist name="defaultcommu3vbrowser" version="1.0">
-    <parameter name="Visibility">Beginner</parameter>
-    <parameter name="Names">FeatureNames</parameter>
-    <parameter name="View">Tree</parameter>
-    <parameter name="Refresh">AutoRefresh</parameter>
-  </propertylist>
-  <propertylist name="defaultcommgevbrowser" version="1.0">
-    <parameter name="Visibility">Beginner</parameter>
-    <parameter name="Names">FeatureNames</parameter>
-    <parameter name="View">Tree</parameter>
-    <parameter name="Refresh">AutoRefresh</parameter>
-  </propertylist>
-  <genparameterarray name="gevcommunication" version="1.0">
-    <parameter name="PreferredTransport">UDP</parameter>
-    <parameter name="AnswerTimeout">1000</parameter>
-    <parameter name="CommandRetryCount">3</parameter>
-    <parameter name="DefaultMCTT">400</parameter>
-    <parameter name="DefaultMCRC">3</parameter>
-    <parameter name="ReadMemPacketSize">552</parameter>
-    <parameter name="WriteMemPacketSize">552</parameter>
-    <parameter name="ForcedCommandPortEnabled">0</parameter>
-    <parameter name="ForcedMessagingPortEnabled">0</parameter>
-    <parameter name="HeartbeatInterval">1500</parameter>
-    <parameter name="DefaultHeartbeatTimeout">5000</parameter>
-    <parameter name="DisconnectOnAnyTimeout">0</parameter>
-    <parameter name="AutoNegotiation">1</parameter>
-    <parameter name="DeviceGenICamXMLLocation">Default</parameter>
-    <parameter name="UseManifests">0</parameter>
-    <parameter name="LinkRecoveryEnabled">0</parameter>
-  </genparameterarray>
-  <genparameterarray name="u3vcommunication" version="1.0">
-    <parameter name="HeartbeatInterval">1000</parameter>
-    <parameter name="SICustomPayloadTransferSize">0</parameter>
-    <parameter name="DeviceGenICamXMLLocation">Default</parameter>
-    <parameter name="LinkRecoveryEnabled">0</parameter>
-  </genparameterarray>
-  <context name="setupversion">1.0.0.0</context>
-  <context name="setuprole">ctrldata</context>
-  <context name="setupdestination">unicastauto</context>
-  <context name="setupunicastspecificport">0</context>
-  <context name="setupdefaultchannel">0</context>
-  <context name="setupunicastip">0.0.0.0</context>
-  <context name="setupunicastport">0</context>
-  <context name="setupmulticastip">239.192.1.1</context>
-  <context name="defaultchannel">1042</context>
-  <context name="filteringdlgversion">1.0.0.0</context>
-  <context name="filterrgbenabled">false</context>
-  <context name="redgain">1.00136</context>
-  <context name="greengain">1.00136</context>
-  <context name="bluegain">1.00136</context>
-  <context name="redoffset">0</context>
-  <context name="greenoffset">0</context>
-  <context name="blueoffset">0</context>
-  <context name="bayerfiltering">simple</context>
-  <context name="histogramversion">1.0.0.0</context>
-  <context name="histogramenabled">false</context>
-  <context name="histogramdarkthreshold">0</context>
-  <context name="histogramlightthreshold">255</context>
-  <context name="saveenabled">0</context>
-  <context name="oneoutof">10</context>
-  <context name="maxrate">100</context>
-  <context name="averagethroughput">1</context>
-  <context name="savethrottleoption">0</context>
-  <context name="savepath">/home/daniel/Desktop/temp</context>
-  <context name="saveformat">raw</context>
-  <context name="logbufferversion">1.0.0.0</context>
-  <context name="loggenicamenabled">true</context>
-  <context name="logeventsenabled">false</context>
-  <context name="logbuffererrorenabled">true</context>
-  <context name="logbufferallenabled">false</context>
-  <context name="chunkenabled">false</context>
-  <context name="logfilename">/home/daniel/Desktop/EventMonitor.txt</context>
-  <context name="logwritetofileenabled">false</context>
-  <context name="logserialcomenabled">false</context>
-  <context name="logsinkenabled">false</context>
-  <context name="bufferoptionsdlgversion">1.0.0.0</context>
-  <context name="streamingbuffercount">16</context>
-  <context name="streamingdefaultbuffersize">4147200</context>
-  <context name="streamingautoresize">1</context>
-  <propertylist name="displayoptions" version="1.0">
-    <parameter name="vsyncenabled">0</parameter>
-    <parameter name="keeppartialimagesenabled">0</parameter>
-    <parameter name="displaychunkdata">0</parameter>
-    <parameter name="targetframerate">30</parameter>
-    <parameter name="deinterlacing">deinterlacingweavinghalf</parameter>
-  </propertylist>
-  <device name="" version="1.0">
+  <device name="DeviceConfiguration" version="1.0">
     <guid>14FB0117CBB1</guid>
     <communication>
       <parameter name="HeartbeatInterval">1000</parameter>
@@ -122,7 +17,7 @@
       <parameter name="TestPattern">Off</parameter>
       <parameter name="AcquisitionMode">Continuous</parameter>
       <parameter name="AcquisitionFrameCount">1</parameter>
-      <parameter name="AcquisitionFrameRate">10</parameter>
+      <parameter name="AcquisitionFrameRate">5</parameter>
       <parameter name="TriggerMode[TriggerSelector:AcquisitionStart]">Off</parameter>
       <parameter name="TriggerMode[TriggerSelector:AcquisitionEnd]">Off</parameter>
       <parameter name="TriggerMode[TriggerSelector:FrameStart]">Off</parameter>
@@ -138,11 +33,11 @@
       <parameter name="TriggerOverlap[TriggerSelector:FrameStart]">Off</parameter>
       <parameter name="TriggerDelay[TriggerSelector:FrameStart]">0</parameter>
       <parameter name="ExposureMode">Timed</parameter>
-      <parameter name="ExposureTime">99900</parameter>
+      <parameter name="ExposureTime">50000</parameter>
       <parameter name="ExposureAuto">Off</parameter>
       <parameter name="Gain[GainSelector:AnalogAll]">1</parameter>
-      <parameter name="Gain[GainSelector:DigitalRed]">1.35876</parameter>
-      <parameter name="Gain[GainSelector:DigitalBlue]">2.98669</parameter>
+      <parameter name="Gain[GainSelector:DigitalRed]">1.3999</parameter>
+      <parameter name="Gain[GainSelector:DigitalBlue]">2.5</parameter>
       <parameter name="BlackLevel[BlackLevelSelector:DigitalAll]">0</parameter>
       <parameter name="BlackLevel[BlackLevelSelector:DigitalRed]">0</parameter>
       <parameter name="BlackLevel[BlackLevelSelector:DigitalBlue]">0</parameter>
@@ -2610,7 +2505,7 @@
       <parameter name="OptInFilterSelector">OPT010US</parameter>
       <parameter name="DeviceManifestEntrySelector">1</parameter>
       <parameter name="TriggerSelector">FrameStart</parameter>
-      <parameter name="GainSelector">AnalogAll</parameter>
+      <parameter name="GainSelector">DigitalBlue</parameter>
       <parameter name="BlackLevelSelector">DigitalAll</parameter>
       <parameter name="LineSelector">Line2</parameter>
       <parameter name="UserOutputSelector">UserOutput0</parameter>
@@ -2623,7 +2518,7 @@
       <parameter name="SensorMultiRoiIndex">Index1</parameter>
     </device>
   </device>
-  <stream name="" version="1.0">
+  <stream name="StreamConfiguration" version="1.0">
     <guid>14FB0117CBB1</guid>
     <channel>0</channel>
     <parameters>
