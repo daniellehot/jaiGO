@@ -237,7 +237,7 @@ void AcquireImages( PvDevice *aDevice, PvStream *aStream, PvPipeline *aPipeline 
 
                 if (lBuffer->GetPayloadType() == PvPayloadTypeImage)
                 {
-                    cout << "W: " << dec << lBuffer->GetImage()->GetWidth() << "H: " << lBuffer->GetImage()->GetHeight();
+                    cout << "W: " << dec << lBuffer->GetImage()->GetWidth() << " H: " << lBuffer->GetImage()->GetHeight();
                     cout << "  " << lFrameRateVal << " FPS  " << ( lBandwidthVal / 1000000.0 ) << " Mb/s   \r";
                     cv::Mat openCvImage = cv::Mat(lBuffer->GetImage()->GetHeight(), lBuffer->GetImage()->GetWidth(), CV_8U, lBuffer->GetDataPointer());
                     cv::Mat colorImg;
